@@ -1,0 +1,15 @@
+{
+  "name": "@mobius3d/mobius-lib",
+  "version": "1.0.0",
+  "description": "Common mobius libraries",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-dcn:Mobius3D/mobius-lib.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
