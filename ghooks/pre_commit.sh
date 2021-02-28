@@ -4,7 +4,7 @@ set -e
 
 add_copyright_header () {
     local copyright="// © 2021 - FOREVER, ALL RIGHTS RESERVED"
-    local line2="// Ed Estes, Daniel Newman, William J. Steel"
+    local line2="// Ed Estes, Daniel Newman, William J. Steele"
     local header=${copyright/FOREVER/$(date +%Y)}
     local regex="^\/\/ © 2021 - ([0-9]{4}), ALL RIGHTS RESERVED$"
 
