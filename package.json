@@ -6,10 +6,25 @@
   "scripts": {
     "test": "exit 0"
   },
+  "config": {
+    "ghooks": {
+      "pre-commit": "./ghooks/pre_commit.sh"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com-dcn:Mobius3D/mobius-lib.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "mongoose": "^5.11.18"
+  },
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "ghooks": "^2.0.4"
+  }
 }
