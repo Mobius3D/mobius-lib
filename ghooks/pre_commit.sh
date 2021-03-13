@@ -21,7 +21,7 @@ add_copyright_header () {
 }
 
 main () {
-    git_cached_files=$(git diff --cached --name-only --diff-filter=ACMR | grep "\.js$" | grep -v "dist/" || true)
+    git_cached_files=$(git diff --cached --name-only --diff-filter=ACMR | grep "\.js$" | grep -v "ghooks/" || true)
     for file in $git_cached_files; do
         add_copyright_header $file
     done
@@ -33,6 +33,13 @@ main () {
         ./node_modules/.bin/eslint --fix $git_cached_files
         git add $git_cached_files
         for file in $git_cached_files; do echo "Linted and fixed $file"; done
+    fi
+
+    if [[ " ${file_array[@]} " =~ " lib/printerState.js " ]]; then
+      ./ghooks/build_enums > lib/validators/defs.json.tmp
+      mv lib/validators/defs.json.tmp lib/validators/defs.json
+      git add lib/validators/defs.json
+      echo "Rebuilt lib/validators/defs.json"
     fi
 
     echo "Staged files are linted and fixed. Ready to commit."
