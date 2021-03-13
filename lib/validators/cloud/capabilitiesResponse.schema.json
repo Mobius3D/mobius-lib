@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/capabilitiesResponse.json",
+  "title": "capabilitiesResponse",
+  "description": "Special capabilities supported by the cloud for the printer",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "description": "The specific printer to which this response applies",
+      "type": "string"
+    },
+    "capabilities": {
+      "description": "The list of special capabilities supported by the cloud for the printer",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "capabilities",
+    "serialNumber"
+  ]
+}

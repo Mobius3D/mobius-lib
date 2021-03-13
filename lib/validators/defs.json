@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/defs.json",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "mongoObjectId": {
+      "type": "string",
+      "minLength": 24,
+      "maxLength": 24,
+      "pattern": "^[a-fA-F0-9]{24}$"
+    },
+    "printerStatesEnum": {
+      "enum": [
+        "READY",
+        "PREPARING",
+        "PRINTING",
+        "PAUSED",
+        "POSTPROCESSING",
+        "CANCELING",
+        "COMPLETE",
+        "UPDATING",
+        "LOCAL",
+        "ERROR",
+        "DISCONNECTED",
+        "DOOR",
+        "CLEAR"
+      ]
+    }
+  }
+}

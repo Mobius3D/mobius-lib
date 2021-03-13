@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const utils = require('../lib/utils');
+const { PrinterStates } = require('../lib/printerState');
+const defs = require('../lib/validators/defs.json');
+
+utils.set(defs, 'definitions.printerStatesEnum.enum', Object.keys(PrinterStates));
+
+console.log(JSON.stringify(defs, null, 2));

@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/cancel.json",
+  "title": "cancel",
+  "description": "Abort the current print on the specified printer",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "description": "The specific printer to which this command is directed",
+      "type": "string"
+    }
+  },
+  "required": [
+    "serialNumber"
+  ]
+}
