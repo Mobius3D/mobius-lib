@@ -27,9 +27,46 @@
       ]
     }
   },
-  "required": [
-    "serialNumber",
-    "status",
-    "message"
+  "oneOf": [
+    {
+      "properties": {
+        "status": {
+          "enum": [
+            "NONE"
+          ]
+        },
+        "message": {
+          "enum": [
+            "NO_QUEUED_JOBS"
+          ]
+        }
+      },
+      "required": [
+        "serialNumber",
+        "status",
+        "message"
+      ]
+    },
+    {
+      "properties": {
+        "status": {
+          "enum": [
+            "FAILED"
+          ]
+        },
+        "message": {
+          "enum": [
+            "INVALID_JOBID",
+            "PRINTER_DELETED",
+            "SERVER_ERROR"
+          ]
+        }
+      },
+      "required": [
+        "serialNumber",
+        "status",
+        "message"
+      ]
+    }
   ]
 }

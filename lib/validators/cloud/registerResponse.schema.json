@@ -16,7 +16,7 @@
         "FAILED"
       ]
     },
-    "reason": {
+    "message": {
       "description": "Explanation of FAILED response",
       "type": "string",
       "enum": [
@@ -33,6 +33,6 @@
   "required": [
     "serialNumber",
     "status",
-    "reason"
+    "message"
   ]
 }
