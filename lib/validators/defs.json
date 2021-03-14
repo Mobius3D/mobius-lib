@@ -4,6 +4,40 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
+    "jobObject": {
+      "type": "object",
+      "properties": {
+        "jobId": {
+          "$ref": "#/definitions/mongoObjectId",
+          "description": "Print job id"
+        },
+        "jobName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "description": "Job name"
+        },
+        "imageFile": {
+          "$ref": "#/definitions/url",
+          "description": "full URL for a rendering of the job"
+        },
+        "imageThumbnailFile": {
+          "$ref": "#/definitions/url",
+          "description": "URL for a small rendering of the job"
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 97,
+          "description": "Display name of the job's owner"
+        },
+        "ownerPhotoFile": {
+          "$ref": "#/definitions/url",
+          "description": "URL for the owner's profile image"
+        }
+      },
+      "required": ["jobId", "jobName"]
+    },
     "mongoObjectId": {
       "type": "string",
       "minLength": 24,
@@ -26,6 +60,11 @@
         "DOOR",
         "CLEAR"
       ]
+    },
+    "url": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 256
     }
   }
 }

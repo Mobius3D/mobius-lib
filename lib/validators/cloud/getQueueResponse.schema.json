@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/getQueueResponse.json",
+  "title": "getQueueResponse",
+  "description": "Paginated response to getQueue command sent by printer",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "totalCount": {
+      "description": "Total count of queued jobs",
+      "type": "integer",
+      "minimum": 0
+    },
+    "jobCount": {
+      "description": "Count of jobs returned in this response",
+      "type": "integer",
+      "minimum": 0
+    },
+    "skip": {
+      "description": "Skip value",
+      "type": "integer",
+      "minimum": 0
+    },
+    "limit": {
+      "description": "Limit value",
+      "type": "integer",
+      "minimum": 0
+    },
+    "jobs": {
+      "type": "array",
+      "items": { "$ref": "../defs.json#/definitions/jobObject" }
+    }
+  },
+  "required": [
+    "jobCount",
+    "jobs",
+    "limit",
+    "serialNumber",
+    "skip",
+    "totalCount"
+  ]
+}

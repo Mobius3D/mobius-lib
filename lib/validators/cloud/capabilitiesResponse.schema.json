@@ -5,10 +5,7 @@
   "description": "Special capabilities supported by the cloud for the printer",
   "type": "object",
   "properties": {
-    "serialNumber": {
-      "description": "The specific printer to which this response applies",
-      "type": "string"
-    },
+    "serialNumber": { "$ref" : "../defs.json#/definitions/mongoObjectId" },
     "capabilities": {
       "description": "The list of special capabilities supported by the cloud for the printer",
       "type": "array",

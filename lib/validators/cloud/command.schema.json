@@ -5,10 +5,7 @@
   "description": "One or more commands to be executed by the printer; commands delimited by \n",
   "type": "object",
   "properties": {
-    "serialNumber": {
-      "description": "The specific printer to which this command is directed",
-      "type": "string"
-    },
+    "serialNumber": { "$ref" : "../defs.json#/definitions/mongoObjectId" },
     "command": {
       "description": "Commands to send to the printer",
       "type": "string"
