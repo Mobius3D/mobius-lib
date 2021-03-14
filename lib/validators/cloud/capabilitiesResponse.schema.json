@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "http://apexslicer.com/schemas/cloud/capabilitiesResponse.json",
   "title": "capabilitiesResponse",
-  "description": "Special capabilities supported by the cloud for the printer",
+  "description": "Printer server response to capabilities command",
   "type": "object",
   "properties": {
     "serialNumber": { "$ref" : "../defs.json#/definitions/mongoObjectId" },

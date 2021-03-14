@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/registerResponse.json",
+  "title": "registerResponse",
+  "description": "Printer server response to a register command",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "status": {
+      "description": "Response status to hello command",
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "FAILED"
+      ]
+    },
+    "reason": {
+      "description": "Explanation of FAILED response",
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "SERVER_ERROR",
+        "MFG_MISSING",
+        "MFG_UNKNOWN",
+        "EMAIL_PIN_ERROR",
+        "FORBIDDEN",
+        "INVALID_KEY"
+      ]
+    }
+  },
+  "required": [
+    "serialNumber",
+    "status",
+    "reason"
+  ]
+}

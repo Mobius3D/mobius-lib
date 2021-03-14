@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/print.json",
+  "title": "print",
+  "description": "Begin a print",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "jobName": {
+      "description": "For reference purposes, identifies the print job",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "jobId": {
+      "description": "For reference purposes, identifies the print job",
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "gcodeFile": {
+      "description": "Full URL to the gcode to print",
+      "$ref": "../defs.json#/definitions/url"
+    },
+    "imageFile": {
+      "description": "Full URL to a rendering of the model",
+      "$ref": "../defs.json#/definitions/url"
+    },
+    "imageThumbnailFile": {
+      "description": "Full URL to a small rendering of the model",
+      "$ref": "../defs.json#/definitions/url"
+    },
+    "stlFile": {
+      "description": "Full URL to the STL to print",
+      "$ref": "../defs.json#/definitions/url"
+    },
+    "configFile": {
+      "description": "Full URL to the slicer configuration for the print",
+      "$ref": "../defs.json#/definitions/url"
+    }
+  },
+  "oneOf": [
+    {
+      "required": [
+        "serialNumber",
+        "jobId",
+        "jobName",
+        "gcodeFile"
+      ]
+    },
+    {
+      "required": [
+        "serialNumber",
+        "jobId",
+        "jobName",
+        "stlFile",
+        "configFile"
+      ]
+    }
+  ]
+}
