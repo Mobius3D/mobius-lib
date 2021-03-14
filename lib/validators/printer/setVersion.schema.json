@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/setVersion.json",
+  "title": "setVersion",
+  "description": "Inform the Printer Server about the printer controller's software version",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "runningVersion": {
+      "description": "Controller software presently installed",
+      "$ref": "../defs.json#/definitions/version"
+    },
+    "latestVersion": {
+      "description": "Latest available controller software",
+      "$ref": "../defs.json#/definitions/version"
+    }
+  },
+  "required": [
+    "serialNumber",
+    "runningVersion"
+  ]
+}

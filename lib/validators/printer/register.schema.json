@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/register.json",
+  "title": "register",
+  "description": "Register a printer with the Printer Server",
+  "type": "object",
+  "properties": {
+    "email": {
+      "description": "Printer owner's email address as registered in the cloud",
+      "type": "string",
+      "pattern": "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$",
+      "minLength": 5,
+      "maxLength": 65
+    },
+    "pin": {
+      "description": "Printer owner's PIN",
+      "type": "string",
+      "pattern": "^[\\d]{4,16}$"
+    },
+    "publicKey": {
+      "description": "Printer's public RSA key",
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 512
+    },
+    "mfg": {
+      "description": "Name of the printer's manufacturer",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "mfgSn": {
+      "description": "Printer's manufacturer serial number",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    }
+  },
+  "required": [
+    "email",
+    "pin",
+    "mfg",
+    "publicKey"
+  ]
+}
