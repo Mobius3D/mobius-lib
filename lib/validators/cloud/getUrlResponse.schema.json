@@ -20,15 +20,7 @@
       "description": "Explanation of FAILED response",
       "type": "string"
     },
-    "type": {
-      "description": "Upload type of the returned URL",
-      "type": "string",
-      "enum": [
-        "idle",
-        "printing",
-        "timelapse"
-      ]
-    },
+    "type": { "$ref": "../defs.json#/definitions/mediaUploadTypes" },
     "expires": {
       "description": "Seconds until URL expires and ceases to be valid",
       "type": "integer",
@@ -49,14 +41,7 @@
         "video/mp4"
       ]
     },
-    "method": {
-      "description": "HTTP method for file upload (PUT, POST)",
-      "type": "string",
-      "enum": [
-        "POST",
-        "PUT"
-      ]
-    },
+    "method": { "$ref": "../defs.json#/definitions/mediaUploadMethods" },
     "url": {
       "description": "HTTP URL to use to upload the file",
       "type": "string",

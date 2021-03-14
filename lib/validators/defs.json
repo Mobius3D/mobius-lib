@@ -38,6 +38,20 @@
       },
       "required": ["jobId", "jobName"]
     },
+    "mediaUploadMethods": {
+      "description": "HTTP request method for media upload",
+      "type": "string",
+      "enum": ["POST"]
+    },
+    "mediaUploadTypes": {
+      "description": "Media upload type of the returned URL",
+      "type": "string",
+      "enum": [
+        "idle",
+        "printing",
+        "timelapse"
+      ]
+    },
     "mongoObjectId": {
       "type": "string",
       "minLength": 24,

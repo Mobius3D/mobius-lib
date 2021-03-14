@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/hello.json",
+  "title": "hello",
+  "description": "Respond to the Printer Server's welcome message",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "signature": {
+      "description": "Digital signature of the received challenge",
+      "type": "string",
+      "minLength": 0,
+      "maxLength": 100
+    },
+    "protocol": {
+      "description": "Protocol version",
+      "type": "string",
+      "enum": ["2.0"]
+    },
+    "MAC": {
+      "description": "Printer's MAC address",
+      "type": "string",
+      "pattern": "^[\\da-fA-F]{12}$|^(([\\da-fA-F]{2}[-:]){5}[\\da-fA-F]{2})$|^([\\da-f]{4}\\\\.[\\da-f]{4}\\\\.[\\da-f]{4})$\""
+    },
+    "mfgSn": {
+      "description": "Printer manafacturer's serial number",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "printerMake": {
+      "description": "Printer make as per types known to the cloud",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "version": {
+      "description": "Currently installed printer controller software version",
+      "type": "string",
+      "pattern": "^[\\d]{1,3}.[\\d]{1,3}(.[\\d]{1,4})?$"
+    },
+    "localIP": {
+      "description": "Printer's IP address",
+      "type": "string",
+      "minLength": 7,
+      "maxLength": 39
+    },
+    "rotateImg": {
+      "description": "Rotate the image 180 degrees (1) or 0 degrees (0)",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "transformImg": {
+      "description": "Image transformation to apply",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 7
+    },
+    "camOff": {
+      "description": "Is the camera enabled (1) or disabled (0)",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "camUrl": {
+      "description": "URL for the camera's live feed",
+      "$ref":  "../defs.json#/definitions/url"
+    }
+  },
+  "required": [
+    "serialNumber",
+    "signature",
+    "protocol"
+  ]
+}
