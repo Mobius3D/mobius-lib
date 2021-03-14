@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/getUrlResponse.json",
+  "title": "getUrlResponse",
+  "description": "Signed S3 URL for uploading media to the cloud",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "status": {
+      "description": "Status of getUrl command",
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "FAILED"
+      ]
+    },
+    "message": {
+      "description": "Explanation of FAILED response",
+      "type": "string"
+    },
+    "type": { "$ref": "../defs.json#/definitions/mediaUploadTypes" },
+    "expires": {
+      "description": "Seconds until URL expires and ceases to be valid",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 604800
+    },
+    "maxSize": {
+      "description": "Maximum allowed upload file size, in bytes",
+      "type": "integer",
+      "minimum": 1024,
+      "maximum": 536870912
+    },
+    "contentType": {
+      "description": "MIME content-type for file upload",
+      "type": "string",
+      "enum": [
+        "image/jpeg",
+        "video/mp4"
+      ]
+    },
+    "method": { "$ref": "../defs.json#/definitions/mediaUploadMethods" },
+    "url": {
+      "description": "HTTP URL to use to upload the file",
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2048
+    },
+    "fields": {
+      "type": "object",
+      "properties": {
+        "bucket": {
+          "description": "S3 bucket name",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "key": {
+          "description": "S3 bucket key name",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "acl": {
+          "description": "S3 bucket/key access permitted by this signed URL",
+          "type": "string",
+          "enum": [
+            "public-read"
+          ]
+        },
+        "X-Amz-Algorithm": {
+          "description": "Signature algorithm used for this signed URL",
+          "type": "string",
+          "enum": [
+            "WS4-HMAC-SHA256"
+          ]
+        },
+        "X-Amz-Credential": {
+          "description": "Credential associated with this signed URL",
+          "type": "string",
+          "minLength": 1
+        },
+        "X-Amz-Date": {
+          "description": "Time stamp associated with this signed URL",
+          "type": "string",
+          "minLength": 1
+        },
+        "Policy": {
+          "description": "Policy (encrypted) associated with this signed URL",
+          "type": "string",
+          "minLength": 1
+        },
+        "X-Amz-Signature": {
+          "description": "Digital signature associated with this signed URL",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "bucket",
+        "key",
+        "acl",
+        "X-Amz-Algorithm",
+        "X-Amz-Credential",
+        "X-Amz-Date",
+        "Policy",
+        "X-Amz-Signature"
+      ]
+    }
+  },
+  "oneOf": [
+    {
+      "required": [
+        "serialNumber",
+        "status",
+        "message"
+      ]
+    },
+    {
+      "required": [
+        "serialNumber",
+        "status",
+        "type",
+        "expires",
+        "maxSize",
+        "contentType",
+        "method",
+        "url",
+        "fields"
+      ]
+    }
+  ]
+}

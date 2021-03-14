@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/helloResponse.json",
+  "title": "helloResponse",
+  "description": "Printer server response to a hello command",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "status": {
+      "description": "Response status to hello command",
+      "type": "string",
+      "enum": ["SUCCESS", "FAILED", "DELETED"]
+    },
+    "message": {
+      "description": "Explanation of FAILED response",
+      "type": "string"
+    }
+  },
+  "required": [
+    "serialNumber",
+    "status"
+  ]
+}

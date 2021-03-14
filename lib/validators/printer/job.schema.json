@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/job.json",
+  "title": "job",
+  "description": "Inform the Printer Server that a print job has completed",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "jobId": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "state": {
+      "description": "Print completion status",
+      "type": "string",
+      "enum": ["completed", "canceled"]
+    },
+    "printSeconds": {
+      "description": "Elapsed time required to print",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 63115200
+    }
+  },
+  "required": [
+    "serialNumber",
+    "jobId",
+    "state",
+    "printSeconds"
+  ]
+}

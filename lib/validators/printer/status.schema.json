@@ -27,7 +27,8 @@
     },
     "estimatedTime": {
       "type": "number",
-      "minimum": 0
+      "minimum": 0,
+      "maximum": 126230400
     }
   },
   "required": [

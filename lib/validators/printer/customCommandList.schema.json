@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/customCommandList.json",
+  "title": "customCommandList",
+  "description": "Additional commands supported by the printer",
+  "type": "object",
+  "properties": {
+    "serialNumber": { "$ref" : "../defs.json#/definitions/mongoObjectId" },
+    "customCommandList": {
+      "description": "List of zero or more custom commands",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "description": "Text for UI button or menu label",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32
+          },
+          "command": {
+            "description": "The command to send back to the printer with a customCommand command",
+            "type": "string",
+            "minLength": 1
+          },
+          "helpText": {
+            "description": "Help text to associate with the UI button or menu item",
+            "type": "string",
+            "minLength": 1
+          },
+          "confirmText": {
+            "description": "Text for a required user confirmation before sending the command",
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": ["label", "command"]
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "serialNumber",
+    "customCommandList"
+  ]
+}

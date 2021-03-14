@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/getUrl.json",
+  "title": "getUrl",
+  "description": "Request a signed S3 URL for uploading media",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "jobId": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "method": {
+      "$ref": "../defs.json#/definitions/mediaUploadMethods"
+    },
+    "type": {
+      "$ref": "../defs.json#/definitions/mediaUploadTypes"
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "type": {
+          "enum": [
+            "printing",
+            "timelapse"
+          ]
+        }
+      },
+      "required": [
+        "serialNumber",
+        "jobId",
+        "method",
+        "type"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "enum": [
+            "idle"
+          ]
+        }
+      },
+      "required": [
+        "serialNumber",
+        "method",
+        "type"
+      ]
+    }
+  ]
+}

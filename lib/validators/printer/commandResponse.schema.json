@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/commandResponse.json",
+  "title": "commandResponse",
+  "description": "Send back to the Print Server the output of executed commands",
+  "type": "object",
+  "properties": {
+    "serialNumber": { "$ref" : "../defs.json#/definitions/mongoObjectId" },
+    "response": {
+      "type": "string",
+      "minLength": 0,
+      "maxLength": 4096
+    }
+  },
+  "required": [
+    "serialNumber",
+    "response"
+  ]
+}
