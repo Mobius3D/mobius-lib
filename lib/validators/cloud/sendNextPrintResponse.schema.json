@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/sendNextPrintResponse.json",
+  "title": "sendNextPrintResponse",
+  "description": "Printer server response to a sendNextPrint command",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "status": {
+      "description": "Response status to failed sendNextPrint command",
+      "type": "string",
+      "enum": [
+        "NONE",
+        "FAILED"
+      ]
+    },
+    "message": {
+      "description": "Explanation of why no next print response",
+      "type": "string",
+      "enum": [
+        "NO_QUEUED_JOBS",
+        "INVALID_JOBID",
+        "PRINTER_DELETED",
+        "SERVER_ERROR"
+      ]
+    }
+  },
+  "required": [
+    "serialNumber",
+    "status",
+    "message"
+  ]
+}
