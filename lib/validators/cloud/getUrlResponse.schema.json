@@ -45,6 +45,7 @@
     "url": {
       "description": "HTTP URL to use to upload the file",
       "type": "string",
+      "pattern": "^https://[a-zA-Z\\d].*",
       "minLength": 10,
       "maxLength": 2048
     },
@@ -112,6 +113,11 @@
   },
   "oneOf": [
     {
+      "properties": {
+        "status": {
+          "enum": ["FAILED"]
+        }
+      },
       "required": [
         "serialNumber",
         "status",
@@ -119,6 +125,13 @@
       ]
     },
     {
+      "properties": {
+        "status": {
+          "enum": [
+            "SUCCESS"
+          ]
+        }
+      },
       "required": [
         "serialNumber",
         "status",

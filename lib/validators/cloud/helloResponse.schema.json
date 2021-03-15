@@ -11,15 +11,45 @@
     "status": {
       "description": "Response status to hello command",
       "type": "string",
-      "enum": ["SUCCESS", "FAILED", "DELETED"]
+      "enum": [
+        "SUCCESS",
+        "FAILED",
+        "DELETED"
+      ]
     },
     "message": {
       "description": "Explanation of FAILED response",
       "type": "string"
     }
   },
-  "required": [
-    "serialNumber",
-    "status"
+  "oneOf": [
+    {
+      "properties": {
+        "status": {
+          "enum": [
+            "SUCCESS"
+          ]
+        }
+      },
+      "required": [
+        "serialNumber",
+        "status"
+      ]
+    },
+    {
+      "properties": {
+        "status": {
+          "enum": [
+            "FAILED",
+            "DELETED"
+          ]
+        }
+      },
+      "required": [
+        "serialNumber",
+        "status",
+        "message"
+      ]
+    }
   ]
 }

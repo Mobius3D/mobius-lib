@@ -1,27 +1,52 @@
 {
-    "env": {
-        "node": true
-    },
-    "extends": [
-        "airbnb-base"
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "extends": [
+    "airbnb-base"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "script"
+  },
+  "rules": {
+    "comma-dangle": [
+      "error",
+      "never"
     ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaVersion": 2020,
-        "sourceType": "script"
-    },
-    "rules": {
-        "comma-dangle": ["error", "never"],
-        "no-bitwise": "off",
-        "no-continue": "off",
-        "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
-        "no-param-reassign": "off",
-        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-        "no-underscore-dangle": "off",
-        "operator-linebreak": "off",
-        "strict": ["error", "safe"]
+    "no-bitwise": "off",
+    "no-continue": "off",
+    "no-multi-spaces": [
+      "error",
+      {
+        "ignoreEOLComments": true
+      }
+    ],
+    "no-param-reassign": "off",
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-underscore-dangle": "off",
+    "operator-linebreak": "off",
+    "strict": [
+      "error",
+      "safe"
+    ]
+  },
+  "overrides": [
+    {
+      "files": "*.test.js",
+      "rules": {
+        "no-unused-expressions": "off"
+      }
     }
+  ]
 }
