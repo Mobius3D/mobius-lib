@@ -13,6 +13,7 @@ describe(`Printer ${CMD} command validator`, () => {
     email: 'postmaster@sample.com',
     pin: '1234',
     publicKey: 'Kwikset Schlage'.padEnd(72, 'x'),
+    MAC: '12:34:56:78:90:ab',
     mfg: 'Acme Mfg',
     mfgSn: '0001'
   };
@@ -107,7 +108,7 @@ describe(`Printer ${CMD} command validator`, () => {
     return done();
   });
 
-  it('rejects an empty oublicKey', (done) => {
+  it('rejects an empty publicKey', (done) => {
     const payload = { ...goodPayload };
     payload.publicKey = '';
     const result = validators.validatePrinterCommand(CMD);
@@ -135,6 +136,22 @@ describe(`Printer ${CMD} command validator`, () => {
     const payload = { ...goodPayload };
     payload.publicKey = '123'.padEnd(2048, 'x');
     const result = validators.validatePrinterCommand(CMD);
+    expect(result).to.not.be.null;
+    return done();
+  });
+
+  it('rejects an invalid MAC', (done) => {
+    const payload = { ...goodPayload };
+    payload.MAC = 'xx.xx.xx.xx.xx.xx';
+    const result = validators.validatePrinterCommand(CMD, payload);
+    expect(result).to.not.be.null;
+    return done();
+  });
+
+  it('rejects an empty MAC', (done) => {
+    const payload = { ...goodPayload };
+    payload.MAC = '';
+    const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();
   });

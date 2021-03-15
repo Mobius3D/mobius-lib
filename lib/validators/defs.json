@@ -38,6 +38,10 @@
       },
       "required": ["jobId", "jobName"]
     },
+    "mac": {
+      "type": "string",
+      "pattern": "^[\\da-fA-F]{12}$|^(([\\da-fA-F]{2}[-:]){5}[\\da-fA-F]{2})$|^([\\da-f]{4}\\\\.[\\da-f]{4}\\\\.[\\da-f]{4})$\""
+    },
     "mediaUploadMethods": {
       "description": "HTTP request method for media upload",
       "type": "string",

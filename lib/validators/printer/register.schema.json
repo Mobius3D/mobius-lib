@@ -23,6 +23,10 @@
       "minLength": 64,
       "maxLength": 512
     },
+    "MAC": {
+      "description": "Printer's MAC address",
+      "$ref": "../defs.json#/definitions/mac"
+    },
     "mfg": {
       "description": "Name of the printer's manufacturer",
       "type": "string",
@@ -39,6 +43,7 @@
   "required": [
     "email",
     "pin",
+    "MAC",
     "mfg",
     "publicKey"
   ]

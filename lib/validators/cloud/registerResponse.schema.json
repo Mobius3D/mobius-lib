@@ -25,7 +25,6 @@
         "MFG_MISSING",
         "MFG_UNKNOWN",
         "EMAIL_PIN_ERROR",
-        "FORBIDDEN",
         "INVALID_KEY"
       ]
     }
