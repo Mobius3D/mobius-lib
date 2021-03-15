@@ -13,7 +13,7 @@ describe(`Printer ${CMD} command validator`, () => {
     email: 'postmaster@sample.com',
     pin: '1234',
     publicKey: 'Kwikset Schlage'.padEnd(72, 'x'),
-    MAC: '12:34:56:78:90:ab',
+    MAC: 'DE:AD:BE:EF:20:20',
     mfg: 'Acme Mfg',
     mfgSn: '0001'
   };
