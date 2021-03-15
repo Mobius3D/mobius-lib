@@ -5,17 +5,22 @@
   "description": "Report of printer's current state",
   "type": "object",
   "properties": {
-    "serialNumber": { "$ref" : "../defs.json#/definitions/mongoObjectId" },
-    "status": { "$ref" : "../defs.json#/definitions/printerStatesEnum" },
-    "jobId": { "$ref" : "../defs.json#/definitions/mongoObjectId" },
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "status": {
+      "$ref": "../defs.json#/definitions/printerStatesEnum"
+    },
+    "jobId": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
     "printSeconds": {
       "type": "number",
       "minimum": 0
     },
     "file": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 512
+      "description": "URL to the gcode file being printed",
+      "$ref": "../defs.json#/definitions/url"
     },
     "fileSize": {
       "type": "integer",
@@ -32,6 +37,7 @@
     }
   },
   "required": [
-    "serialNumber", "status"
+    "serialNumber",
+    "status"
   ]
 }

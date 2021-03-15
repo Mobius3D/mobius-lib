@@ -11,7 +11,7 @@
     "signature": {
       "description": "Digital signature of the received challenge",
       "type": "string",
-      "minLength": 0,
+      "minLength": 1,
       "maxLength": 100
     },
     "protocol": {
@@ -43,7 +43,7 @@
     "localIP": {
       "description": "Printer's IP address",
       "type": "string",
-      "minLength": 7,
+      "minLength": 3,
       "maxLength": 39
     },
     "transformImg": {
@@ -60,7 +60,10 @@
     },
     "camUrl": {
       "description": "URL for the camera's live feed",
-      "$ref":  "../defs.json#/definitions/url"
+      "type":  "string",
+      "pattern": "^http://[\\da-zA-Z].*|^https://[\\da-zA-Z].*",
+      "minLength": 7,
+      "maxLength": 256
     }
   },
   "required": [

@@ -9,7 +9,10 @@
       "$ref": "../defs.json#/definitions/mongoObjectId"
     },
     "jobId": {
-      "$ref": "../defs.json#/definitions/mongoObjectId"
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 24,
+      "pattern": "^[a-fA-F0-9]{24}$|^123$"
     },
     "state": {
       "description": "Print completion status",
@@ -24,9 +27,9 @@
     }
   },
   "required": [
-    "serialNumber",
     "jobId",
-    "state",
-    "printSeconds"
+    "printSeconds",
+    "serialNumber",
+    "state"
   ]
 }
