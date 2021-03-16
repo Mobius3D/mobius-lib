@@ -19,11 +19,6 @@
       "type": "string",
       "enum": ["2.0"]
     },
-    "MAC": {
-      "description": "Printer's MAC address",
-      "type": "string",
-      "pattern": "^[\\da-fA-F]{12}$|^(([\\da-fA-F]{2}[-:]){5}[\\da-fA-F]{2})$|^([\\da-f]{4}\\\\.[\\da-f]{4}\\\\.[\\da-f]{4})$\""
-    },
     "mfgSn": {
       "description": "Printer manafacturer's serial number",
       "type": "string",

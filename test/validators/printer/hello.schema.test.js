@@ -14,7 +14,6 @@ describe(`Printer ${CMD} command validator`, () => {
     serialNumber: SERIAL_NUMBER,
     signature: 'Button Gwinnett',
     protocol: '2.0',
-    MAC: 'DE:AD:BE:EF:00:00',
     mfgSn: '00001',
     printerMake: 'Cupcake',
     version: '0.0.0',
@@ -101,22 +100,6 @@ describe(`Printer ${CMD} command validator`, () => {
   it('rejects a missing protocol', (done) => {
     const payload = { ...goodPayload };
     delete payload.protocol;
-    const result = validators.validatePrinterCommand(CMD, payload);
-    expect(result).to.not.be.null;
-    return done();
-  });
-
-  it('rejects an invalid MAC', (done) => {
-    const payload = { ...goodPayload };
-    payload.MAC = 'xx.xx.xx.xx.xx.xx';
-    const result = validators.validatePrinterCommand(CMD, payload);
-    expect(result).to.not.be.null;
-    return done();
-  });
-
-  it('rejects an empty MAC', (done) => {
-    const payload = { ...goodPayload };
-    payload.MAC = '';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();

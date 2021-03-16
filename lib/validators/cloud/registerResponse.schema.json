@@ -20,13 +20,12 @@
       "description": "Explanation of FAILED response",
       "type": "string",
       "enum": [
-        "SUCCESS",
-        "SERVER_ERROR",
-        "MFG_MISSING",
-        "MFG_UNKNOWN",
         "EMAIL_PIN_ERROR",
-        "FORBIDDEN",
-        "INVALID_KEY"
+        "INVALID_KEY",
+        "INVALID_MAC",
+        "INVALID_MFG",
+        "SERVER_ERROR",
+        "SUCCESS"
       ]
     }
   },
