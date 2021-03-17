@@ -46,5 +46,6 @@
     "MAC",
     "mfg",
     "publicKey"
-  ]
+  ],
+  "_validationRequired": false
 }
