@@ -36,7 +36,10 @@
           "description": "URL for the owner's profile image"
         }
       },
-      "required": ["jobId", "jobName"]
+      "required": [
+        "jobId",
+        "jobName"
+      ]
     },
     "mac": {
       "type": "string",
@@ -45,7 +48,9 @@
     "mediaUploadMethods": {
       "description": "HTTP request method for media upload",
       "type": "string",
-      "enum": ["POST"]
+      "enum": [
+        "POST"
+      ]
     },
     "mediaUploadTypes": {
       "description": "Media upload type of the returned URL",
@@ -70,7 +75,7 @@
         "PAUSED",
         "POSTPROCESSING",
         "CANCELING",
-        "COMPLETE",
+        "COMPLETED",
         "UPDATING",
         "LOCAL",
         "ERROR",
