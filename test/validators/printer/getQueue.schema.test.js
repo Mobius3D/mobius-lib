@@ -9,6 +9,10 @@ const { validators } = require('../../..');
 const CMD = 'getQueue';
 const SERIAL_NUMBER = '01234567890123456789abcd';
 
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 describe(`Printer ${CMD} command validator`, () => {
   const goodPayload = {
     serialNumber: SERIAL_NUMBER,
@@ -35,7 +39,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid serialNumber', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.serialNumber = '###';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -43,7 +47,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a missing serialNumber', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     delete payload.serialNumber;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -51,7 +55,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a negative skip', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.skip = -1;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -59,7 +63,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid skip', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.skip = '0';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -67,7 +71,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a negative limit', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.limit = -1;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -75,7 +79,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid limit', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.limit = '10';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;

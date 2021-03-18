@@ -9,6 +9,10 @@ const { validators } = require('../../..');
 const CMD = 'getUrl';
 const SERIAL_NUMBER = '01234567890123456789abcd';
 
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 describe(`Printer ${CMD} command validator`, () => {
   const goodPrintingPayload = {
     serialNumber: SERIAL_NUMBER,
@@ -47,7 +51,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid serialNumber', (done) => {
-    const payload = { ...goodPrintingPayload };
+    const payload = deepClone(goodPrintingPayload);
     payload.serialNumber = '###';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -55,7 +59,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a missing serialNumber', (done) => {
-    const payload = { ...goodPrintingPayload };
+    const payload = deepClone(goodPrintingPayload);
     delete payload.serialNumber;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -63,7 +67,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid jobId', (done) => {
-    const payload = { ...goodPrintingPayload };
+    const payload = deepClone(goodPrintingPayload);
     payload.jobId = '###';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -71,7 +75,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a missing jobId', (done) => {
-    const payload = { ...goodPrintingPayload };
+    const payload = deepClone(goodPrintingPayload);
     delete payload.jobId;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -79,7 +83,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a missing type', (done) => {
-    const payload = { ...goodPrintingPayload };
+    const payload = deepClone(goodPrintingPayload);
     delete payload.type;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -87,7 +91,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid type', (done) => {
-    const payload = { ...goodPrintingPayload };
+    const payload = deepClone(goodPrintingPayload);
     payload.type = 'streaming';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -95,7 +99,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a missing method', (done) => {
-    const payload = { ...goodPrintingPayload };
+    const payload = deepClone(goodPrintingPayload);
     delete payload.method;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -103,7 +107,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid method ', (done) => {
-    const payload = { ...goodPrintingPayload };
+    const payload = deepClone(goodPrintingPayload);
     payload.method = 'HEAD';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;

@@ -8,39 +8,43 @@ const { validators } = require('../../..');
 
 const CMD = 'welcome';
 
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 describe(`Cloud ${CMD} command validator`, () => {
   const goodPayload = { challenge: 'What is you favorite color?' };
 
   it('accepts a valid payload', (done) => {
-    const result = validators.validateCloudCommand(CMD, goodPayload);
+    const result = validators.validateServerCommand(CMD, goodPayload);
     expect(result).to.be.null;
     return done();
   });
 
   it('rejects an empty payload', (done) => {
-    const result = validators.validateCloudCommand(CMD, {});
+    const result = validators.validateServerCommand(CMD, {});
     expect(result).to.not.be.null;
     return done();
   });
 
   it('rejects a missing payload', (done) => {
-    const result = validators.validateCloudCommand(CMD);
+    const result = validators.validateServerCommand(CMD);
     expect(result).to.not.be.null;
     return done();
   });
 
   it('rejects an invalid challenge', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.challenge = '';
-    const result = validators.validateCloudCommand(CMD, payload);
+    const result = validators.validateServerCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();
   });
 
   it('rejects a missing challenge', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     delete payload.challenge;
-    const result = validators.validateCloudCommand(CMD, payload);
+    const result = validators.validateServerCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();
   });

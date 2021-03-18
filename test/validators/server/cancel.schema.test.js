@@ -6,37 +6,38 @@
 const { expect } = require('chai');
 const { validators } = require('../../..');
 
-const CMD = 'delete';
+const CMD = 'cancel';
 const SERIAL_NUMBER = '01234567890123456789abcd';
 
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 describe(`Cloud ${CMD} command validator`, () => {
-  const goodPayload = {
-    serialNumber: SERIAL_NUMBER,
-    customCommand: 'CMD-1'
-  };
+  const goodPayload = { serialNumber: SERIAL_NUMBER };
 
   it('accepts a valid payload', (done) => {
-    const result = validators.validateCloudCommand(CMD, goodPayload);
+    const result = validators.validateServerCommand(CMD, goodPayload);
     expect(result).to.be.null;
     return done();
   });
 
   it('rejects an empty payload', (done) => {
-    const result = validators.validateCloudCommand(CMD, {});
+    const result = validators.validateServerCommand(CMD, {});
     expect(result).to.not.be.null;
     return done();
   });
 
   it('rejects a missing payload', (done) => {
-    const result = validators.validateCloudCommand(CMD);
+    const result = validators.validateServerCommand(CMD);
     expect(result).to.not.be.null;
     return done();
   });
 
   it('rejects an invalid serialNumber', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.serialNumber = '###';
-    const result = validators.validateCloudCommand(CMD, payload);
+    const result = validators.validateServerCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();
   });
