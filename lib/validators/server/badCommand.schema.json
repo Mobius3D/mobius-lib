@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://apexslicer.com/schemas/cloud/badCommand.json",
+  "title": "badCommand",
+  "description": "Alert the printer to a bad command it sent",
+  "type": "object",
+  "properties": {
+    "serialNumber": {
+      "$ref": "../defs.json#/definitions/mongoObjectId"
+    },
+    "command": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string",
+      "enum": [
+        "COMMAND_EMPTY",
+        "COMMAND_INVALID",
+        "VALIDATION_MISSING"
+      ]
+    },
+    "detail": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "message"
+  ]
+}

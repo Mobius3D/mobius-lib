@@ -7,8 +7,8 @@ const { expect } = require('chai');
 const { validators } = require('../..');
 
 describe('Printer Server validators', () => {
-  it('validateCloudCommand rejects an unknown command', (done) => {
-    const result = validators.validateCloudCommand('Fooberry', {});
+  it('validateServerCommand rejects an unknown command', (done) => {
+    const result = validators.validateServerCommand('Fooberry', {});
     expect(result).to.not.be.null;
     return done();
   });

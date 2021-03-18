@@ -9,6 +9,10 @@ const { validators } = require('../../..');
 const CMD = 'commandResponse';
 const SERIAL_NUMBER = '01234567890123456789abcd';
 
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 describe(`Printer ${CMD} command validator`, () => {
   const goodPayload = {
     serialNumber: SERIAL_NUMBER,
@@ -22,7 +26,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('permits response to be an empty string', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.response = '';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.be.null;
@@ -42,7 +46,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid serialNumber', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.serialNumber = '###';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -50,7 +54,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a missing serialNumber', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     delete payload.serialNumber;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -58,7 +62,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a missing response', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     delete payload.response;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -66,7 +70,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid response', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.response = false;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -74,7 +78,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects too long of a response', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.response = 'OK'.padEnd(10000, '*');
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;

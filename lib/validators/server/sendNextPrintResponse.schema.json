@@ -20,8 +20,8 @@
       "description": "Explanation of why no next print response",
       "type": "string",
       "enum": [
-        "NO_QUEUED_JOBS",
         "INVALID_JOBID",
+        "NO_QUEUED_JOBS",
         "PRINTER_DELETED",
         "SERVER_ERROR"
       ]

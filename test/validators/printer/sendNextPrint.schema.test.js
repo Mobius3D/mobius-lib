@@ -9,6 +9,10 @@ const { validators } = require('../../..');
 const CMD = 'sendNextPrint';
 const SERIAL_NUMBER = '01234567890123456789abcd';
 
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 describe(`Printer ${CMD} command validator`, () => {
   const goodPayload = {
     serialNumber: SERIAL_NUMBER,
@@ -22,7 +26,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('accepts a valid payload without jobId', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     delete payload.jobId;
     const result = validators.validatePrinterCommand(CMD, goodPayload);
     expect(result).to.be.null;
@@ -42,7 +46,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid serialNumber', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.serialNumber = '###';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -50,7 +54,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a missing serialNumber', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     delete payload.serialNumber;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -58,7 +62,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid JobId', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.jobId = '###';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;

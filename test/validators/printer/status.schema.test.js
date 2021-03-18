@@ -9,6 +9,10 @@ const { validators } = require('../../..');
 const CMD = 'status';
 const SERIAL_NUMBER = '01234567890123456789abcd';
 
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 describe(`Printer ${CMD} command validator`, () => {
   const goodPayload = {
     serialNumber: SERIAL_NUMBER,
@@ -40,7 +44,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid serialNumber', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.serialNumber = '###';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -48,7 +52,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a missing serialNumber', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     delete payload.serialNumber;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -56,7 +60,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid jobId', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.jobId = '###';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -64,7 +68,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid status', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.status = '###';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -72,7 +76,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a missing status', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     delete payload.status;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -80,7 +84,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects an invalid file', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.file = 'http://127.0.0.1/foo.gc';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -88,7 +92,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a negative fileSize', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.fileSize = -1;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -96,7 +100,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a non-integer fileSize', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.fileSize = 4095.9;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -104,7 +108,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a string fileSize', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.fileSize = '4096';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -112,7 +116,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a negative bytesRead', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.bytesRead = -1;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -120,7 +124,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a non-integer bytesRead', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.bytesRead = 4095.9;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -128,7 +132,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a string bytesRead', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.bytesRead = '4096';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -136,7 +140,7 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a negative estimatedTime', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.estimatedTime = -10;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
@@ -144,8 +148,16 @@ describe(`Printer ${CMD} command validator`, () => {
   });
 
   it('rejects a string estimatedTime', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.estimatedTime = '3600';
+    const result = validators.validatePrinterCommand(CMD, payload);
+    expect(result).to.not.be.null;
+    return done();
+  });
+
+  it('rejects additional properties', (done) => {
+    const payload = deepClone(goodPayload);
+    payload.temperature = 150.6;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();

@@ -6,70 +6,74 @@
 const { expect } = require('chai');
 const { validators } = require('../../..');
 
-const CMD = 'unregisterResponse';
+const CMD = 'registerResponse';
 const SERIAL_NUMBER = '01234567890123456789abcd';
+
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
 
 describe(`Cloud ${CMD} command validator`, () => {
   const goodPayload = {
     serialNumber: SERIAL_NUMBER,
     status: 'SUCCESS',
-    message: 'Printer unregister successful'
+    message: 'SUCCESS'
   };
 
   it('accepts a valid payload', (done) => {
-    const result = validators.validateCloudCommand(CMD, goodPayload);
+    const result = validators.validateServerCommand(CMD, goodPayload);
     expect(result).to.be.null;
     return done();
   });
 
   it('rejects an empty payload', (done) => {
-    const result = validators.validateCloudCommand(CMD, {});
+    const result = validators.validateServerCommand(CMD, {});
     expect(result).to.not.be.null;
     return done();
   });
 
   it('rejects a missing payload', (done) => {
-    const result = validators.validateCloudCommand(CMD);
+    const result = validators.validateServerCommand(CMD);
     expect(result).to.not.be.null;
     return done();
   });
 
   it('rejects an invalid serialNumber', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.serialNumber = '###';
-    const result = validators.validateCloudCommand(CMD, payload);
+    const result = validators.validateServerCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();
   });
 
   it('rejects an invalid status', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     payload.status = 'FOO';
-    const result = validators.validateCloudCommand(CMD, {});
+    const result = validators.validateServerCommand(CMD, {});
     expect(result).to.not.be.null;
     return done();
   });
 
   it('rejects a missing status', (done) => {
-    const payload = { ...goodPayload };
+    const payload = deepClone(goodPayload);
     delete payload.status;
-    const result = validators.validateCloudCommand(CMD);
+    const result = validators.validateServerCommand(CMD);
     expect(result).to.not.be.null;
     return done();
   });
 
   it('rejects an invalid message', (done) => {
-    const payload = { ...goodPayload };
-    payload.message = 'FOO';
-    const result = validators.validateCloudCommand(CMD, {});
+    const payload = deepClone(goodPayload);
+    payload.reason = 'FOO';
+    const result = validators.validateServerCommand(CMD, {});
     expect(result).to.not.be.null;
     return done();
   });
 
   it('rejects a missing message', (done) => {
-    const payload = { ...goodPayload };
-    delete payload.message;
-    const result = validators.validateCloudCommand(CMD);
+    const payload = deepClone(goodPayload);
+    delete payload.reason;
+    const result = validators.validateServerCommand(CMD);
     expect(result).to.not.be.null;
     return done();
   });

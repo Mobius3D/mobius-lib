@@ -36,6 +36,7 @@
       "maximum": 126230400
     }
   },
+  "additionalProperties": false,
   "required": [
     "serialNumber",
     "status"

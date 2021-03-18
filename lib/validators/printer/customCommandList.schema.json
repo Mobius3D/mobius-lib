@@ -15,6 +15,7 @@
           "label": {
             "description": "Text for UI button or menu label",
             "type": "string",
+            "pattern": "^[^<>]{1,32}$",
             "minLength": 1,
             "maxLength": 32
           },
@@ -26,19 +27,25 @@
           "helpText": {
             "description": "Help text to associate with the UI button or menu item",
             "type": "string",
-            "minLength": 1
+            "pattern": "^[^<>]{1,256}$",
+            "minLength": 1,
+            "maxLength": 256
           },
           "confirmText": {
             "description": "Text for a required user confirmation before sending the command",
             "type": "string",
-            "minLength": 1
+            "pattern": "^[^<>]{1,256}$",
+            "maxLength": 256
           }
         },
+        "additionalProperties": false,
         "required": ["label", "command"]
       },
-      "minItems": 0
+      "minItems": 0,
+      "maxItems": 12
     }
   },
+  "additionalProperties": false,
   "required": [
     "serialNumber",
     "customCommandList"
