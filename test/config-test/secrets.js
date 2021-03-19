@@ -6,5 +6,9 @@
 module.exports = {
   foo: {
     secret: 'SECRET'
+  },
+  hashSecret: {
+    pad: 8,
+    salt: 'super-duper-ultra-secret'
   }
 };
