@@ -22,4 +22,17 @@ describe('Config utility', () => {
     expect(config.get('foo.bar.cat', 'meow')).to.equal('meow');
     done();
   });
+
+  it('we see expected bucket keys', (done) => {
+    const sn = '01234567890123456789abcd';
+    const jobId = 'abcd01234567890123456789';
+    const idle = 'printer/56xBMWbxV5SLr8rEOMZ7/camera.jpg';
+    const printing = 'printer/56xBMWbxV5SLr8rEOMZ7/gOae3R6ybosjQExQ6M8Q/camera.jpg';
+    const timelapse = 'printer/56xBMWbxV5SLr8rEOMZ7/gOae3R6ybosjQExQ6M8Q/timelapse.mp4';
+
+    expect(config.getBucketKey('idle', { sn, ext: 'jpg' })).to.equal(idle);
+    expect(config.getBucketKey('printing', { sn, jobId, ext: 'jpg' })).to.equal(printing);
+    expect(config.getBucketKey('timelapse', { sn, jobId, ext: 'mp4' })).to.equal(timelapse);
+    done();
+  });
 });
