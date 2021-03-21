@@ -8,11 +8,13 @@
     "serialNumber": { "$ref" : "../defs.json#/definitions/mongoObjectId" },
     "skip": {
       "type": "integer",
-      "minimum": 0
+      "minimum": 0,
+      "default": 0
     },
     "limit": {
       "type": "integer",
-      "minimum": 0
+      "minimum": 0,
+      "default": 0
     }
   },
   "required": [

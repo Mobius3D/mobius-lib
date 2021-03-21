@@ -22,7 +22,7 @@ describe(`Cloud ${CMD} command validator`, () => {
   const failedPayload = {
     serialNumber: SERIAL_NUMBER,
     status: 'FAILED',
-    message: 'INVALID_JOBID'
+    message: 'SERVER_ERROR'
   };
 
   it('accepts a valid none payload', (done) => {
