@@ -46,6 +46,24 @@ describe(`Cloud ${CMD} command validator`, () => {
     return done();
   });
 
+  it('rejects a missing serialNumber for SUCCESS', (done) => {
+    const payload = deepClone(goodPayload);
+    payload.status = 'SUCCESS';
+    delete payload.serialNumber;
+    const result = validators.validateServerCommand(CMD, payload);
+    expect(result).to.not.be.null;
+    return done();
+  });
+
+  it('allows a missing serialNumber for FAILED', (done) => {
+    const payload = deepClone(goodPayload);
+    payload.status = 'FAILED';
+    delete payload.serialNumber;
+    const result = validators.validateServerCommand(CMD, payload);
+    expect(result).to.be.null;
+    return done();
+  });
+
   it('rejects an invalid status', (done) => {
     const payload = deepClone(goodPayload);
     payload.status = 'FOO';
