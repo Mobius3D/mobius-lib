@@ -29,9 +29,33 @@
       ]
     }
   },
-  "required": [
-    "serialNumber",
-    "status",
-    "message"
+  "oneOf": [
+    {
+      "properties": {
+        "status": {
+          "enum": [
+            "SUCCESS"
+          ]
+        }
+      },
+      "required": [
+        "serialNumber",
+        "status",
+        "message"
+      ]
+    },
+    {
+      "properties": {
+        "status": {
+          "enum": [
+            "FAILED"
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "message"
+      ]
+    }
   ]
 }
