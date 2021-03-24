@@ -19,6 +19,7 @@ describe(`Printer ${CMD} command validator`, () => {
     publicKey: 'Kwikset Schlage'.padEnd(72, 'x'),
     MAC: 'DE:AD:BE:EF:20:20',
     mfg: 'Acme Mfg',
+    mfgModel: 'Whizbang Pro++ 2000',
     mfgSn: '0001'
   };
 
@@ -187,6 +188,14 @@ describe(`Printer ${CMD} command validator`, () => {
   it('rejects a mfgSn which is too long', (done) => {
     const payload = deepClone(goodPayload);
     payload.mfgSn = '123'.padEnd(64, 'x');
+    const result = validators.validatePrinterCommand(CMD);
+    expect(result).to.not.be.null;
+    return done();
+  });
+
+  it('rejects a missing mfgModel which is too long', (done) => {
+    const payload = deepClone(goodPayload);
+    delete payload.mfgModel;
     const result = validators.validatePrinterCommand(CMD);
     expect(result).to.not.be.null;
     return done();
