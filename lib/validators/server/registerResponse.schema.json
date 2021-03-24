@@ -21,9 +21,6 @@
       "type": "string",
       "enum": [
         "EMAIL_PIN_ERROR",
-        "INVALID_KEY",
-        "INVALID_MAC",
-        "INVALID_MFG",
         "SERVER_ERROR",
         "SUCCESS"
       ]
