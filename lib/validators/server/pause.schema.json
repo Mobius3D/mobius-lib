@@ -5,9 +5,8 @@
   "description": "Pause the current print",
   "type": "object",
   "properties": {
-    "serialNumber": {
-      "$ref": "../defs.json#/definitions/mongoObjectId"
-    },
+    "serialNumber": { "$ref": "../defs.json#/definitions/mongoObjectId" },
+    "jobId": { "$ref": "../defs.json#/definitions/localJobId" },
     "type": {
       "description": "Type of pause",
       "type": "string",
@@ -16,6 +15,7 @@
   },
   "required": [
     "serialNumber",
+    "jobId",
     "type"
   ]
 }

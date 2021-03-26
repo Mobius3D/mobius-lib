@@ -12,7 +12,7 @@
       "$ref": "../defs.json#/definitions/printerStatesEnum"
     },
     "jobId": {
-      "$ref": "../defs.json#/definitions/mongoObjectId"
+      "$ref": "../defs.json#/definitions/localJobId"
     },
     "printSeconds": {
       "type": "number",

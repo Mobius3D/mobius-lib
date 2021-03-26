@@ -14,10 +14,21 @@ function deepClone(obj) {
 }
 
 describe(`Cloud ${CMD} command validator`, () => {
-  const goodPayload = { serialNumber: SERIAL_NUMBER };
+  const goodPayload = {
+    serialNumber: SERIAL_NUMBER,
+    jobId: SERIAL_NUMBER
+  };
 
   it('accepts a valid payload', (done) => {
     const result = validators.validateServerCommand(CMD, goodPayload);
+    expect(result).to.be.null;
+    return done();
+  });
+
+  it('accepts a local jobId', (done) => {
+    const payload = deepClone(goodPayload);
+    payload.jobId = '123';
+    const result = validators.validateServerCommand(CMD, payload);
     expect(result).to.be.null;
     return done();
   });
@@ -37,6 +48,22 @@ describe(`Cloud ${CMD} command validator`, () => {
   it('rejects an invalid serialNumber', (done) => {
     const payload = deepClone(goodPayload);
     payload.serialNumber = '###';
+    const result = validators.validateServerCommand(CMD, payload);
+    expect(result).to.not.be.null;
+    return done();
+  });
+
+  it('rejects a missing jobId', (done) => {
+    const payload = deepClone(goodPayload);
+    delete payload.jobId;
+    const result = validators.validateServerCommand(CMD, payload);
+    expect(result).to.not.be.null;
+    return done();
+  });
+
+  it('rejects an invalid jobId', (done) => {
+    const payload = deepClone(goodPayload);
+    payload.jobId = '1';
     const result = validators.validateServerCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();
