@@ -5,9 +5,11 @@
   "description": "Abort the current print on the specified printer",
   "type": "object",
   "properties": {
-    "serialNumber": { "$ref" : "../defs.json#/definitions/mongoObjectId" }
+    "serialNumber": { "$ref" : "../defs.json#/definitions/mongoObjectId" },
+    "jobId": { "$ref": "../defs.json#/definitions/localJobId" }
   },
   "required": [
-    "serialNumber"
+    "serialNumber",
+    "jobId"
   ]
 }
