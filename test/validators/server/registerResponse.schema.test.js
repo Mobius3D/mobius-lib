@@ -17,7 +17,7 @@ describe(`Cloud ${CMD} command validator`, () => {
   const goodPayload = {
     serialNumber: SERIAL_NUMBER,
     status: 'SUCCESS',
-    message: 'SUCCESS'
+    message: 'REGISTERED'
   };
 
   it('accepts a valid payload', (done) => {

@@ -21,8 +21,9 @@
       "type": "string",
       "enum": [
         "EMAIL_PIN_ERROR",
-        "SERVER_ERROR",
-        "SUCCESS"
+        "REGISTERED",
+        "REGISTRATION_UPDATED",
+        "SERVER_ERROR"
       ]
     }
   },

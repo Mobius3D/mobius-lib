@@ -44,7 +44,7 @@ describe(`Printer ${CMD} command validator`, () => {
     return done();
   });
 
-  it('rejects an invalid customCommandList', (done) => {
+  it('rejects a non-array customCommandList', (done) => {
     const payload = deepClone(goodPayload);
     // eslint-disable-next-line prefer-destructuring
     payload.customCommandList = payload.customCommandList[0];
