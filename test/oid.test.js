@@ -45,6 +45,7 @@ describe('OID library', () => {
     const oid1 = oid.oidFromDateTime('1970/03/04');
     const oid2 = oid.ensure(oid1.toHexString());
     expect(oid1.equals(oid2)).to.be.true;
+    expect(oid1.equals(oid.ensure(oid1))).to.be.true;
     done();
   });
 });
