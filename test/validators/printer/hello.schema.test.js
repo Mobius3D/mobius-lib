@@ -17,9 +17,10 @@ describe(`Printer ${CMD} command validator`, () => {
   const goodPayload = {
     serialNumber: SERIAL_NUMBER,
     signature: 'Button Gwinnett',
-    protocol: '2.0',
+    protocol: '3.0',
     mfgSn: '00001',
-    printerMake: 'Cupcake',
+    mfg: 'MakerBot',
+    mfgModel: 'Cupcake',
     version: '0.0.0',
     localIP: '::1',
     transformImg: 7,
@@ -71,7 +72,7 @@ describe(`Printer ${CMD} command validator`, () => {
 
   it('rejects too long of a signature', (done) => {
     const payload = deepClone(goodPayload);
-    payload.signature = ''.padEnd(500, 'x');
+    payload.signature = ''.padEnd(2048, 'x');
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();
@@ -125,17 +126,17 @@ describe(`Printer ${CMD} command validator`, () => {
     return done();
   });
 
-  it('rejects an empty printerMake', (done) => {
+  it('rejects an empty mfg', (done) => {
     const payload = deepClone(goodPayload);
-    payload.printerMake = '';
+    payload.mfg = '';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();
   });
 
-  it('rejects too long of a printerMake', (done) => {
+  it('rejects too long of a mfg', (done) => {
     const payload = deepClone(goodPayload);
-    payload.printerMake = ''.padEnd(500, 'x');
+    payload.mfg = ''.padEnd(500, 'x');
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();
