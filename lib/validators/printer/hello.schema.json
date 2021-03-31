@@ -12,29 +12,17 @@
       "description": "Digital signature of the received challenge",
       "type": "string",
       "minLength": 1,
-      "maxLength": 100
+      "maxLength": 1024
     },
     "protocol": {
       "description": "Protocol version",
       "type": "string",
-      "enum": ["2.0"]
+      "enum": ["3.0"]
     },
-    "mfgSn": {
-      "description": "Printer manafacturer's serial number",
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 64
-    },
-    "printerMake": {
-      "description": "Printer make as per types known to the cloud",
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 64
-    },
-    "version": {
-      "description": "Currently installed printer controller software version",
-      "$ref": "../defs.json#/definitions/version"
-    },
+    "mfg": { "$ref": "../defs.json#/definitions/mfg" },
+    "mfgModel": { "$ref": "../defs.json#/definitions/mfgModel" },
+    "mfgSn": { "$ref": "../defs.json#/definitions/mfgSn" },
+    "version": { "$ref": "../defs.json#/definitions/version" },
     "localIP": {
       "description": "Printer's IP address",
       "type": "string",
