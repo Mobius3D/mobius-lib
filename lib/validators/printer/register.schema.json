@@ -24,32 +24,25 @@
       "maxLength": 512
     },
     "MAC": {
-      "description": "Printer's MAC address",
       "$ref": "../defs.json#/definitions/mac"
     },
     "mfg": {
-      "description": "Name of the printer's manufacturer (e.g., FormLabs)",
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 32
+      "$ref": "../defs.json#/definitions/mfg"
     },
     "mfgModel": {
-      "description": "Name of the printer model (e.g., Form 3)",
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 32
+      "$ref": "../defs.json#/definitions/mfgModel"
     },
     "mfgSn": {
-      "description": "Printer's manufacturer serial number",
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 32
+      "$ref": "../defs.json#/definitions/mfgSn"
     },
     "mfgData": {
       "description": "Additional printer data to save",
       "type": "string",
       "minLength": 0,
       "maxLength": 1024
+    },
+    "version": {
+      "$ref": "../defs.json#/definitions/version"
     }
   },
   "required": [
