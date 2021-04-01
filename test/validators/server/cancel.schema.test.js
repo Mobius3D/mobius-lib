@@ -53,14 +53,6 @@ describe(`Cloud ${CMD} command validator`, () => {
     return done();
   });
 
-  it('rejects a missing jobId', (done) => {
-    const payload = deepClone(goodPayload);
-    delete payload.jobId;
-    const result = validators.validateServerCommand(CMD, payload);
-    expect(result).to.not.be.null;
-    return done();
-  });
-
   it('rejects an invalid jobId', (done) => {
     const payload = deepClone(goodPayload);
     payload.jobId = '1';
