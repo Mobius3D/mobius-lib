@@ -12,7 +12,10 @@
       "$ref": "../defs.json#/definitions/printerStatesEnum"
     },
     "jobId": {
-      "$ref": "../defs.json#/definitions/localJobId"
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "../defs.json#/definitions/localJobId" }
+      ]
     },
     "printSeconds": {
       "type": "number",
@@ -20,7 +23,10 @@
     },
     "file": {
       "description": "URL to the gcode file being printed",
-      "$ref": "../defs.json#/definitions/url"
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "../defs.json#/definitions/url" }
+      ]
     },
     "fileSize": {
       "type": "integer",

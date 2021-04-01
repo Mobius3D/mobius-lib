@@ -15,7 +15,7 @@
     "pin": {
       "description": "Printer owner's PIN",
       "type": "string",
-      "pattern": "^[\\d]{4,16}$"
+      "pattern": "^[\\d]{4,8}$"
     },
     "publicKey": {
       "description": "Printer's public RSA key",
