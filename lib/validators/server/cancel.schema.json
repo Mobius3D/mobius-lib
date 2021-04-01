@@ -9,7 +9,6 @@
     "jobId": { "$ref": "../defs.json#/definitions/localJobId" }
   },
   "required": [
-    "serialNumber",
-    "jobId"
+    "serialNumber"
   ]
 }
