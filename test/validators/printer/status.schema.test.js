@@ -67,6 +67,14 @@ describe(`Printer ${CMD} command validator`, () => {
     return done();
   });
 
+  it('jobId is nullable', (done) => {
+    const payload = deepClone(goodPayload);
+    payload.jobId = null;
+    const result = validators.validatePrinterCommand(CMD, payload);
+    expect(result).to.be.null;
+    return done();
+  });
+
   it('rejects an invalid status', (done) => {
     const payload = deepClone(goodPayload);
     payload.status = '###';
@@ -88,6 +96,14 @@ describe(`Printer ${CMD} command validator`, () => {
     payload.file = 'http://127.0.0.1/foo.gc';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
+    return done();
+  });
+
+  it('file is nullable', (done) => {
+    const payload = deepClone(goodPayload);
+    payload.file = null;
+    const result = validators.validatePrinterCommand(CMD, payload);
+    expect(result).to.be.null;
     return done();
   });
 
