@@ -75,7 +75,7 @@
           "description": "Signature algorithm used for this signed URL",
           "type": "string",
           "enum": [
-            "WS4-HMAC-SHA256"
+            "AWS4-HMAC-SHA256"
           ]
         },
         "X-Amz-Credential": {

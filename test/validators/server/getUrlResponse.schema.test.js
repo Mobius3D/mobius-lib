@@ -33,7 +33,7 @@ describe(`Cloud ${CMD} command validator`, () => {
       bucket: 'kick, the',
       key: 'G♯',
       acl: 'public-read',
-      'X-Amz-Algorithm': 'WS4-HMAC-SHA256',
+      'X-Amz-Algorithm': 'AWS4-HMAC-SHA256',
       'X-Amz-Credential': 'You need a not from your parents',
       'X-Amz-Date': '04:29:00 21 October 2015',
       Policy: 'Shoot first, ask questions later',
