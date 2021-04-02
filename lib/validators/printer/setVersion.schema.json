@@ -8,17 +8,13 @@
     "serialNumber": {
       "$ref": "../defs.json#/definitions/mongoObjectId"
     },
-    "runningVersion": {
+    "version": {
       "description": "Controller software presently installed",
-      "$ref": "../defs.json#/definitions/version"
-    },
-    "latestVersion": {
-      "description": "Latest available controller software",
       "$ref": "../defs.json#/definitions/version"
     }
   },
   "required": [
     "serialNumber",
-    "runningVersion"
+    "version"
   ]
 }

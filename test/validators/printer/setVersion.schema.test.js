@@ -16,19 +16,10 @@ function deepClone(obj) {
 describe(`Printer ${CMD} command validator`, () => {
   const goodPayload = {
     serialNumber: SERIAL_NUMBER,
-    runningVersion: '1.0.1',
-    latestVersion: '1.1.0'
+    version: '1.0.1'
   };
 
   it('accepts a valid payload with latestVersion', (done) => {
-    const result = validators.validatePrinterCommand(CMD, goodPayload);
-    expect(result).to.be.null;
-    return done();
-  });
-
-  it('accepts a valid payload without latestVersion', (done) => {
-    const payload = deepClone(goodPayload);
-    delete payload.latestVersion;
     const result = validators.validatePrinterCommand(CMD, goodPayload);
     expect(result).to.be.null;
     return done();
@@ -62,41 +53,25 @@ describe(`Printer ${CMD} command validator`, () => {
     return done();
   });
 
-  it('rejects an invalid numeric runningVersion', (done) => {
+  it('rejects an invalid numeric version', (done) => {
     const payload = deepClone(goodPayload);
-    payload.runningVersion = 1.0;
+    payload.version = 1.0;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();
   });
 
-  it('rejects an invalid string runningVersion', (done) => {
+  it('rejects an invalid string version', (done) => {
     const payload = deepClone(goodPayload);
-    payload.runningVersion = '1';
+    payload.version = '1';
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();
   });
 
-  it('rejects a missing runningVersion', (done) => {
+  it('rejects a missing version', (done) => {
     const payload = deepClone(goodPayload);
-    delete payload.runningVersion;
-    const result = validators.validatePrinterCommand(CMD, payload);
-    expect(result).to.not.be.null;
-    return done();
-  });
-
-  it('rejects an invalid numeric latestVersion', (done) => {
-    const payload = deepClone(goodPayload);
-    payload.latestVersion = 2.0;
-    const result = validators.validatePrinterCommand(CMD, payload);
-    expect(result).to.not.be.null;
-    return done();
-  });
-
-  it('rejects an invalid string latestVersion', (done) => {
-    const payload = deepClone(goodPayload);
-    payload.latestVersion = '2';
+    delete payload.version;
     const result = validators.validatePrinterCommand(CMD, payload);
     expect(result).to.not.be.null;
     return done();

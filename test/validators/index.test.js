@@ -6,7 +6,7 @@
 const { expect } = require('chai');
 const { validators } = require('../..');
 
-describe('Printer Server validators', () => {
+describe('Print Server validators', () => {
   it('validateServerCommand rejects an unknown command', (done) => {
     const result = validators.validateServerCommand('Fooberry', {});
     expect(result).to.not.be.null;
