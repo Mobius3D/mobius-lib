@@ -21,7 +21,7 @@
       "type": "string",
       "enum": [
         "EMAIL_PIN_ERROR",
-        "KEY_INVALID",
+        "INVALID_KEY",
         "REGISTERED",
         "REGISTRATION_UPDATED",
         "SERVER_ERROR"
