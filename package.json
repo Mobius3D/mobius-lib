@@ -1,6 +1,6 @@
 {
   "name": "@mobius3d/mobius-lib",
-  "version": "1.1.22",
+  "version": "1.1.23",
   "description": "Common mobius libraries",
   "main": "index.js",
   "scripts": {
